@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="style.css">
+
 <div id="main">
 	<div class="header" name"header">
 		<div id="title">SiteChat</div>
 		<div class="text">Status: <b>Connected</b></div>
 		<div class="text">Users online: <b>10</b></div>
 	</div>
-	<div class="body" name="body">
+	<div id="body" class="body" name="body">
 		<form id="frm">
 			<textarea readonly id="ta"></textarea>
 			<input type="text" id="msg" placeholder="Type message here...">
 			<input type="submit" text="send" id="submit">
 		</form>
+		<!-- <button id="submit" type="submit">Submit</button> -->
+
+		<script src="index.js"></script>
+
+
+			<!-- var text = document.getElementById("msg");
+			var send = document.getElementById("submit");
+
+			submit.addEventListener('click', function() {
+				appendLog("sending to " + sendIid.value);
+				chrome.runtime.sendMessage(
+					sendId.value,
+				)
+			})
+
+		</script> -->
 	</div>
 </div>

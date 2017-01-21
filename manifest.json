@@ -9,11 +9,28 @@
 		"16": "./logo/sc_logo.png",
 		"48": "./logo/sc_logo.png",
 		"128": "./logo/sc_logo.png"
-		},
-	"browser_action": 
-	{
+	},
+	"browser_action": {
 		"default_icon": "./logo/sc_logo.png",
 		"default_popup": "popup.html"
+	},
+	"externally_connectable": {
+		"ids": [
+			"*"
+		]
+	},
+	"content_scripts": [
+		{
+			"matches": ["http://*/*"],
+			"js": ["index.js"]
+		}
+	],
+	"permissions": [
+		"http://localhost:3000/*"
+	],
+	"background": {
+		"scripts": ["index.js"]
 	}
+
 
 }
