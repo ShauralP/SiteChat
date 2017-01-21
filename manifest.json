@@ -29,7 +29,7 @@
 		"http://localhost:3000/*"
 	],
 	"background": {
-		"scripts": ["index.js"]
+		"scripts": ["main.js"]
 	}
 
 

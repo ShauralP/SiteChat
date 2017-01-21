@@ -1,22 +1,23 @@
+
 document.addEventListener('click', function() {
   document.getElementById("submit").addEventListener('click', function (e) {
     e.preventDefault();
 
-    //chrome.runtime.sendMessage(document.getElementById("msg").value);
-    var data = document.getElementById("msg").value;
-    chrome.runtime.sendMessage(data);
+    chrome.runtime.sendMessage(document.getElementById("msg").value);
+    //var data = document.getElementById("msg").value;
+    //chrome.runtime.sendMessage(data);
 
-    $.ajax({
-      type: "POST",
-      data: {data1: document.getElementById("msg").value},
-      dataType: 'json',
-      url: 'http://localhost:3000',
-      success: function(data) {
-        console.log("Success");
-      }
-    });
+    // $.ajax({
+    //   type: "POST",
+    //   data: {data1: document.getElementById("msg").value},
+    //   dataType: 'json',
+    //   url: 'http://localhost:3000',
+    //   success: function(data) {
+    //     console.log("Success");
+    //   }
+    // });
 
-    chrome.runtime.sendMessage("test");
+    //chrome.runtime.sendMessage("test");
 
   });
 
