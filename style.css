@@ -19,7 +19,7 @@ body {
 	left: 0;
 	right: 0;
 	height: 75px;
-	background-color: #3F51B5;
+	background-color: #2979FF;
 	color: #FFFFFF;
 }
 
@@ -50,12 +50,12 @@ body {
 	padding: 2px 8px 2px 8px;
 	font-size:1em;
     border-color: #326E99;
-    background-color: #3F51B5;
+    background-color: #2979FF;
 }
 
 #submit:hover, .ph-btn-blue:focus, .ph-btn-blue:active {
-    background-color: #397CAC;
-    border-color: #326E99;   
+    background-color: #64B5F6;
+    border-color: #326E99;
 }
 
 @font-face {
