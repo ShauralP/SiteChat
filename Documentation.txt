@@ -1,0 +1,9 @@
+-Send msg to web server which send it to all same ip
+-Front end
+	-Title
+	-Users online
+	-Connected or not
+	-Username "handle" created on install
+	-Text view
+	-text box
+	-submit
