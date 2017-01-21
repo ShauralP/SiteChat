@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="style.css">
-<div style="width: 300px; height: 500px;" name="main">
+<div id="main">
 	<div class="header" name"header">
-		<div name="title" style="font-size:20px">WebChat</div>
-		<div>Status: (Connected/Disconnected)</div>
-		<div>Users online:</div>
+		<div id="title">SiteChat</div>
+		<div class="text">Status: <b>Connected</b></div>
+		<div class="text">Users online: <b>10</b></div>
 	</div>
 	<div class="body" name="body">
 		<form id="frm">
-			<textarea></textarea>
-			<input type="text">
-			<input type="submit" text="send">
+			<textarea readonly id="ta"></textarea>
+			<input type="text" id="msg" placeholder="Type message here...">
+			<input type="submit" text="send" id="submit">
 		</form>
 	</div>
 </div>
