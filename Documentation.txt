@@ -1,5 +1,7 @@
+Documentation
+
 -Send msg to web server which send it to all same ip
--Front end
+-Front end (Shaural)
 	-Title
 	-Users online
 	-Connected or not
@@ -7,3 +9,8 @@
 	-Text view
 	-text box
 	-submit
+- Back End (Javascript)
+	- Connect to server
+	- Send to server 
+	- Account for user specific extension
+	- 
