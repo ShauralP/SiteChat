@@ -5,6 +5,7 @@
 	"description": "This is a test extension.",
 	"offline_enabled": false,
 	"permissions": ["cookies"],
+	"options_page": "options.html",
 	"browser_action": 
 	{
 		"default_icon": "test.png",
