@@ -35,7 +35,19 @@ document.addEventListener('click', function() {
       document.getElementById("username").value = username;
       document.getElementById("username").disabled = true;
 
+
+      // var savedUsername = document.getElementById("username").value;
+      // if (!savedUsername) {
+      //   message("Error: No value!");
+      // }
+      //
+      //
+      // chrome.storage.local.set({'username': savedUsername}, function(){
+      //   alert('Settings saved!');
+      // });
     }
+
+
     //chrome.runtime.sendMessage(document.getElementById("msg").value);
 
     // //Use XMLHTTPRequests for GET
