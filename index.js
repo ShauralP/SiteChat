@@ -6,6 +6,21 @@ var message = "";
 var messageCounter = 0;
 var username = "";
 var tabUrl = "";
+var result = "";
+var xhr = new XMLHttpRequest();
+var checkf = function() {
+  val = setInterval(function(){
+
+
+    xhr.open("GET", "http://LocalHost:3000/getdata", false);
+    xhr.send();
+
+    result = xhr.responseText;
+    alert(result);
+  }, 10000);
+}
+
+
 
 document.addEventListener('click', function() {
   document.getElementById("submit").addEventListener('click', function (e) {
@@ -14,7 +29,7 @@ document.addEventListener('click', function() {
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
         tabUrl = tabs[0].url.toLocaleString();
 
-        
+
     username = document.getElementById("username").value;
     if (username) {
       document.getElementById("username").value = username;
@@ -24,7 +39,7 @@ document.addEventListener('click', function() {
     //chrome.runtime.sendMessage(document.getElementById("msg").value);
 
     // //Use XMLHTTPRequests for GET
-    var xhr = new XMLHttpRequest();
+    // var xhr = new XMLHttpRequest();
 
     var pushChat = function() {
       cleanUp();
@@ -114,7 +129,7 @@ document.addEventListener('click', function() {
     xhr.open("GET", "http://LocalHost:3000/getdata", false);
     xhr.send();
 
-    var result = xhr.responseText;
+    result = xhr.responseText;
 
 
     //chrome.runtime.sendMessage(result);
@@ -141,5 +156,5 @@ document.addEventListener('click', function() {
 
 
   });
-
+checkf();
 });
