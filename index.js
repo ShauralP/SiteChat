@@ -16,11 +16,17 @@ var checkf = function() {
     xhr.send();
 
     result = xhr.responseText;
-    alert(result);
   }, 10000);
 }
 
-
+chrome.storage.local.get('username', function (result) {
+        var usernames = result.username;
+        if (usernames) {
+          document.getElementById("username").value = usernames;
+          document.getElementById("username").disabled = true;
+          username = usernames;
+    } 
+      });
 
 document.addEventListener('click', function() {
   document.getElementById("submit").addEventListener('click', function (e) {
@@ -29,23 +35,20 @@ document.addEventListener('click', function() {
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
         tabUrl = tabs[0].url.toLocaleString();
 
+    
 
-    username = document.getElementById("username").value;
-    if (username) {
-      document.getElementById("username").value = username;
-      document.getElementById("username").disabled = true;
+        if (!username) {
+            username = document.getElementById("username").value; 
+            if (username) {
+                chrome.storage.local.set({'username': username}, function(){
+                }); 
+            }else alert("Please enter username");
+        } 
+    
+      
 
-
-      // var savedUsername = document.getElementById("username").value;
-      // if (!savedUsername) {
-      //   message("Error: No value!");
-      // }
-      //
-      //
-      // chrome.storage.local.set({'username': savedUsername}, function(){
-      //   alert('Settings saved!');
-      // });
-    }
+      
+    
 
 
     //chrome.runtime.sendMessage(document.getElementById("msg").value);

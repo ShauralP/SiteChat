@@ -28,7 +28,8 @@
 		"cookies",
 		"http://localhost:3000/*",
 		"contextMenus",
-		"tabs"
+		"tabs",
+		"storage"
 	],
 	"background": {
 		"scripts": ["main.js"]
