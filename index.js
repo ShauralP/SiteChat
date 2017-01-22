@@ -8,16 +8,16 @@ var username = "";
 var tabUrl = "";
 var result = "";
 var xhr = new XMLHttpRequest();
-var checkf = function() {
-  val = setInterval(function(){
-
-
-    xhr.open("GET", "http://LocalHost:3000/getdata", false);
-    xhr.send();
-
-    result = xhr.responseText;
-  }, 10000);
-}
+// var checkf = function() {
+//   val = setInterval(function(){
+//
+//
+//     xhr.open("GET", "http://LocalHost:3000/getdata", false);
+//     xhr.send();
+//
+//     result = xhr.responseText;
+//   }, 10000);
+// }
 
 chrome.storage.local.get('username', function (result) {
         var usernames = result.username;
@@ -25,8 +25,84 @@ chrome.storage.local.get('username', function (result) {
           document.getElementById("username").value = usernames;
           document.getElementById("username").disabled = true;
           username = usernames;
-    } 
+    }
       });
+
+document.addEventListener('click', function() {
+  document.getElementById("refresh").addEventListener('click', function(e){
+    xhr.open("GET", "http://LocalHost:3000/getdata", false);
+    xhr.send();
+
+    var stored = xhr.responseText;
+
+    //alert("YOU PRESSED A BUTTON");
+    //alert(stored);
+
+    var loop = function() {
+      var array = [""];
+      var nameandmessage = "";
+      while (stored.includes("||")) {
+        var end = stored.indexOf("||");
+        var temporary = stored.substring(0, end+1);
+        stored = stored.substring(end+1, stored.length);
+        array.push(temporary);
+      }
+      array.push(stored);
+      //alert(array);
+
+      var ip = "";
+      var datetime = "";
+      var name = "";
+      var message = "";
+
+      for (var i = 0; i < array.length; i++) {
+        var temporary = array[i];
+        //alert(temporary);
+        var count = 0;
+        //alert("gets here");
+        while (temporary.includes('~')) {
+          var loc1 = temporary.indexOf("~");
+          var loc2 = temporary.indexOf("~", loc1+1);
+          var template = temporary.substring(loc1+1, loc2);
+          if (count == 0) {
+            ip = template;
+            alert(ip);
+          } else if (count == 1) {
+            datetime = template;
+            alert(datetime);
+
+          } else if (count == 2) {
+            name = template;
+            alert(name);
+
+          } else if (count == 3) {
+            message = template;
+            count = -1;
+            alert(message);
+          }
+          count++;
+          temporary = temporary.substring(loc2, temporary.length);
+          if (count == 0 && temporary.length > 3) {
+            temporary = temporary.substring(temporary.indexOf("~", loc2), temporary.length);
+          } else {
+            break;
+          }
+          //alert(temporary);
+        }
+
+        //nameandmessage = name.concat(": ").concat(message).concat("\n");
+        // alert(nameandmessage);
+      }
+      document.getElementById("ta").value = "TEST";
+
+    }
+
+    loop();
+
+  });
+});
+
+
 
 document.addEventListener('click', function() {
   document.getElementById("submit").addEventListener('click', function (e) {
@@ -35,20 +111,22 @@ document.addEventListener('click', function() {
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
         tabUrl = tabs[0].url.toLocaleString();
 
-    
+
+
+
 
         if (!username) {
-            username = document.getElementById("username").value; 
+            username = document.getElementById("username").value;
             if (username) {
                 chrome.storage.local.set({'username': username}, function(){
-                }); 
+                });
             }else alert("Please enter username");
-        } 
-    
-      
+        }
 
-      
-    
+
+
+
+
 
 
     //chrome.runtime.sendMessage(document.getElementById("msg").value);
@@ -171,5 +249,5 @@ document.addEventListener('click', function() {
 
 
   });
-checkf();
+//checkf();
 });
