@@ -4,7 +4,6 @@
 	"manifest_version": 2,
 	"description": "This is a extension that enables you to chat with others on the same site.",
 	"offline_enabled": false,
-	"permissions": ["cookies"],
 	"icons": {
 		"16": "./logo/sc_logo.png",
 		"48": "./logo/sc_logo.png",
@@ -26,7 +25,10 @@
 		}
 	],
 	"permissions": [
-		"http://localhost:3000/*"
+		"cookies",
+		"http://localhost:3000/*",
+		"contextMenus",
+		"tabs"
 	],
 	"background": {
 		"scripts": ["main.js"]

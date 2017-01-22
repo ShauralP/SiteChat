@@ -73,9 +73,15 @@ document.addEventListener('click', function() {
     // var url = "get_data.php";
     // var params = {"id": "123", "name": "shaural",  "message": "this is a test message"};
     // var j = JSON.stringify(params);
+
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+        var tabUrl = tabs[0].url;
+    });
+
+
     xhr.open("POST", "http://LocalHost:3000/storedata", false);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify({"ip": "123.0.0.21", "time": "12:00", "name": "shaural", "message": document.getElementById("msg").value}));
+    xhr.send(JSON.stringify({"ip": tabUrl, "time": new Date().toLocaleString(), "name": "shaural", "message": document.getElementById("msg").value}));
 
 
     //var result = xhr.responseText;
@@ -93,7 +99,9 @@ document.addEventListener('click', function() {
 
     // }
     pushChat();
+    
 
+    
     // http.onreadystatechange = function() {//Call a function when the state changes.
     //     if(http.readyState == 4 && http.status == 200) {
     //         alert(http.responseText);
