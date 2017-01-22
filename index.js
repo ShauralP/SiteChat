@@ -79,9 +79,12 @@ document.addEventListener('click', function() {
     });
 
 
+//new Date().toLocaleString()
+//tabUrl
+
     xhr.open("POST", "http://LocalHost:3000/storedata", false);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify({"ip": tabUrl, "time": new Date().toLocaleString(), "name": "shaural", "message": document.getElementById("msg").value}));
+    xhr.send(JSON.stringify({"ip": "123", "time": "12:12", "name": "shaural", "message": document.getElementById("msg").value}));
 
 
     //var result = xhr.responseText;
