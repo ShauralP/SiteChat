@@ -4,11 +4,23 @@ var time = "";
 var message = "";
 // var array = [""];
 var messageCounter = 0;
+var username = "";
+var tabUrl = "";
 
 document.addEventListener('click', function() {
   document.getElementById("submit").addEventListener('click', function (e) {
     e.preventDefault();
 
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+        tabUrl = tabs[0].url.toLocaleString();
+
+        
+    username = document.getElementById("username").value;
+    if (username) {
+      document.getElementById("username").value = username;
+      document.getElementById("username").disabled = true;
+
+    }
     //chrome.runtime.sendMessage(document.getElementById("msg").value);
 
     // //Use XMLHTTPRequests for GET
@@ -86,17 +98,14 @@ document.addEventListener('click', function() {
     // var params = {"id": "123", "name": "shaural",  "message": "this is a test message"};
     // var j = JSON.stringify(params);
 
-    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
-        var tabUrl = tabs[0].url;
-    });
 
 
-//new Date().toLocaleString()
-//tabUrl
+    var formattedUrl = tabUrl.substring(tabUrl.indexOf('.') + 1, tabUrl.indexOf('.', tabUrl.indexOf('.') + 1));
+    var dateTime = new Date().toLocaleString();
 
     xhr.open("POST", "http://LocalHost:3000/storedata", false);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify({"ip": "123", "time": "12:12", "name": "shaural", "message": document.getElementById("msg").value}));
+    xhr.send(JSON.stringify({"ip": formattedUrl, "time": dateTime, "name": username, "message": document.getElementById("msg").value}));
 
 
     //var result = xhr.responseText;
@@ -114,6 +123,9 @@ document.addEventListener('click', function() {
 
     // }
     pushChat();
+
+    });
+
 
 
 
